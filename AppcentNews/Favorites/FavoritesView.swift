@@ -11,7 +11,7 @@ struct FavoritesView: View {
     
     var favoritesData: [NewsDataModel] = FavoritesViewModel().encodeFav()
     
-    //init yaz
+    //init()
     
     var body: some View {
         NavigationView {
