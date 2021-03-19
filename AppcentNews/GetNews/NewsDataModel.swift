@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewsDataModel: Identifiable, Decodable, Encodable {
+struct NewsDataModel: Identifiable, Codable, Equatable {
     var id: String
     var newsTitle: String
     var newsDesc: String

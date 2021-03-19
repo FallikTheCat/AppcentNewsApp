@@ -10,12 +10,13 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var newsData = NewsAPIGet()
+    @ObservedObject var favVM = FavoritesViewModel()
     
     @State private var selected = 0
     
     var body: some View {
         TabView(selection: $selected) {
-            NewsListView(newsData: newsData)
+            NewsListView(newsData: newsData, favVM: favVM)
                 .tabItem {
                     if self.selected == 0 {
                         Image(systemName: "newspaper.fill")
@@ -25,7 +26,7 @@ struct ContentView: View {
                         Text("News")
                     }
                 }.tag(0)
-            FavoritesView()
+            FavoritesView(favVM: favVM)
                 .tabItem {
                     if self.selected == 1 {
                         Image(systemName: "star.fill")

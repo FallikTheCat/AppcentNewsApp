@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct NewsListView: View {
     
     @ObservedObject var newsData: NewsAPIGet
+    @ObservedObject var favVM: FavoritesViewModel
     
     var body: some View {
         GeometryReader{
@@ -39,8 +40,7 @@ struct NewsListView: View {
                                 }
                             }
                         }
-                        .padding(.leading, 16)
-                        .padding(.trailing, 16)
+                        .padding(.horizontal, 16)
                     }.onChange(of: newsData.searchKey, perform: { value in
                         newsData.page = 1
                         newsData.paginationActive = false
@@ -48,7 +48,7 @@ struct NewsListView: View {
                     })
                     
                     List(newsData.newsData) { i in
-                        NavigationLink(destination: NewsDetailView(title: i.newsTitle, description: i.newsDesc, url: i.newsUrl, image: i.newsImage, date: i.newsDate, author: i.newsAuthor)) {
+                        NavigationLink(destination: NewsDetailView(favVM: favVM, title: i.newsTitle, description: i.newsDesc, url: i.newsUrl, image: i.newsImage, date: i.newsDate, author: i.newsAuthor)) {
                             HStack(spacing: 16){
                                 
                                 VStack(alignment: .leading, spacing: 4){
@@ -64,7 +64,7 @@ struct NewsListView: View {
                                     newsData.page += 1
                                     newsData.mainResults()
                                 }
-                        }
+                            }
                         }
                     }
                     
@@ -77,6 +77,6 @@ struct NewsListView: View {
 
 struct NewsListView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsListView(newsData: NewsAPIGet())
+        NewsListView(newsData: NewsAPIGet(), favVM: FavoritesViewModel())
     }
 }
