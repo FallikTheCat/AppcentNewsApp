@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftyJSON
+import Alamofire
 
 class NewsAPIGet: ObservableObject {
     
@@ -23,17 +24,9 @@ class NewsAPIGet: ObservableObject {
             
         let source = "http://newsapi.org/v2/top-headlines?country=us&category=business&page=\(page)&apiKey=45c2cab3da4a498b9c4c09e89ee180e2"
         
-        let url = URL(string: source)!
-        
-        let session = URLSession(configuration: .default)
-        
-        session.dataTask(with: url) { (data, _, error) in
-            if error != nil {
-                print((error?.localizedDescription)!)
-                return
-            }
+        AF.request(source).response { (data) in
             
-            let json = try! JSON(data: data!)
+            let json = try! JSON(data: data.data!)
             
             for i in json["articles"] {
                 let title = i.1["title"].stringValue
@@ -44,14 +37,13 @@ class NewsAPIGet: ObservableObject {
                 let author = i.1["author"].stringValue
                 let id = i.1["publishedAt"].stringValue
                 
-                DispatchQueue.main.async {
-                    self.newsData.append(NewsDataModel(id: id, newsTitle: title, newsDesc: description, newsUrl: url, newsImage: image, newsDate: date, newsAuthor: author))
-                    if self.newsData.count >= 20 {
-                        self.paginationActive = true
-                    }
+                self.newsData.append(NewsDataModel(id: id, newsTitle: title, newsDesc: description, newsUrl: url, newsImage: image, newsDate: date, newsAuthor: author))
+                if self.newsData.count >= 20 {
+                    self.paginationActive = true
                 }
+                
             }
-        }.resume()
+        }
     }
     
     func search() {
@@ -68,17 +60,9 @@ class NewsAPIGet: ObservableObject {
             
             let source = "https://newsapi.org/v2/everything?q=\(searchKey)&page=\(page)&apiKey=45c2cab3da4a498b9c4c09e89ee180e2"
             
-            let url = URL(string: source)!
-            
-            let session = URLSession(configuration: .default)
-        
-            session.dataTask(with: url) { (data, _, error) in
-                if error != nil {
-                    print((error?.localizedDescription)!)
-                    return
-                }
+            AF.request(source).response { (data) in
                 
-                let json = try! JSON(data: data!)
+                let json = try! JSON(data: data.data!)
                 
                 for i in json["articles"] {
                     let title = i.1["title"].stringValue
@@ -89,14 +73,13 @@ class NewsAPIGet: ObservableObject {
                     let author = i.1["author"].stringValue
                     let id = i.1["publishedAt"].stringValue
                     
-                    DispatchQueue.main.async {
-                        self.newsData.append(NewsDataModel(id: id, newsTitle: title, newsDesc: description, newsUrl: url, newsImage: image, newsDate: date, newsAuthor: author))
-                        if self.newsData.count >= 20 {
-                            self.paginationActive = true
-                        }
+                    self.newsData.append(NewsDataModel(id: id, newsTitle: title, newsDesc: description, newsUrl: url, newsImage: image, newsDate: date, newsAuthor: author))
+                    if self.newsData.count >= 20 {
+                        self.paginationActive = true
                     }
+                    
                 }
-            }.resume()
+            }
         }
     }
     
