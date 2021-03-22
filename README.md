@@ -24,10 +24,10 @@ The application's design pattern is the **MVVM** model that comes built-in with 
 #### ViewModels
 * `NewsAPIGet`, `NewsWebViewModel`, `ShareViewModel` and `FavoritesViewModel` files are the **ViewModel**'s. 
 * These files encapsulate business logic and allow Views to observe state changes.
-* NewsAPIGet retrieves the results of the searched word and sends it to the NewsListView.
-* NewsWebViewModel creates the model of the page that opens when the news feed is clicked.
-* ShareViewModel creates the opened sheet to share the url of the news link.
-* FavoritesViewModel retrieves the pre-saved news stored in storage and passes it to the favorites view.
+* `NewsAPIGet` retrieves the results of the searched word and sends it to the NewsListView.
+* `NewsWebViewModel` creates the model of the page that opens when the news feed is clicked.
+* `ShareViewModel` creates the opened sheet to share the url of the news link.
+* `FavoritesViewModel` retrieves the pre-saved news stored in storage and passes it to the favorites view.
 
 #### Views
 * `NewsDetailView`, `NewsListView`, `NewsWebView` and `FavoritesView` files are my **View**'s.
