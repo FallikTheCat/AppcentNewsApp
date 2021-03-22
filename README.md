@@ -1,3 +1,5 @@
+# AppcentNews
+
 AppcentNews is a news feed application that I developed for Appcent. From this application you can view the news according to the word you are searching, 
 access the news sources and add the news you want to your favorites.
 
