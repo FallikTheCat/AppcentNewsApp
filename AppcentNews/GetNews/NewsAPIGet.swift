@@ -20,6 +20,7 @@ class NewsAPIGet: ObservableObject {
         mainResults()
     }
     
+    //Getting the business news in the US for the opening page
     func mainResults() {
             
         let source = "http://newsapi.org/v2/top-headlines?country=us&category=business&page=\(page)&apiKey=45c2cab3da4a498b9c4c09e89ee180e2"
@@ -46,6 +47,7 @@ class NewsAPIGet: ObservableObject {
         }
     }
     
+    //changes search results according to the relevant keyword
     func search() {
         
         if searchKey == "" {
@@ -74,6 +76,7 @@ class NewsAPIGet: ObservableObject {
                     let id = i.1["publishedAt"].stringValue
                     
                     self.newsData.append(NewsDataModel(id: id, newsTitle: title, newsDesc: description, newsUrl: url, newsImage: image, newsDate: date, newsAuthor: author))
+                    //Pagination
                     if self.newsData.count >= 20 {
                         self.paginationActive = true
                     }

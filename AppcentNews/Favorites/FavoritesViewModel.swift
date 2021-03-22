@@ -18,6 +18,7 @@ class FavoritesViewModel: ObservableObject {
         getFavs()
     }
     
+    //Saving favorited news to phone storage
     func addToFav(title: String, desc: String, url: String, image: String, date: String, author: String) {
         
         guard let decodeData = try? JSONDecoder().decode([NewsDataModel].self, from: favorites)
@@ -45,6 +46,7 @@ class FavoritesViewModel: ObservableObject {
         getFavs()
     }
     
+    //Getting saved news from phone storage
     func getFavs() {
         guard let decodeData = try? JSONDecoder().decode([NewsDataModel].self, from: favorites) else {
             let dataArray: [NewsDataModel] = []
@@ -55,6 +57,7 @@ class FavoritesViewModel: ObservableObject {
         favoritesData = dataArray
     }
     
+    //Checking if the favorited news is already added
     func checkContains(url: String) -> Bool {
         guard let decodeData = try? JSONDecoder().decode([NewsDataModel].self, from: favorites) else {
             return false
@@ -70,6 +73,7 @@ class FavoritesViewModel: ObservableObject {
         return contains
     }
     
+    //Deleting favorited news
     func removeFromFavs(title: String, desc: String, url: String, image: String, date: String, author: String) {
         
         guard let decodeData = try? JSONDecoder().decode([NewsDataModel].self, from: favorites) else {
