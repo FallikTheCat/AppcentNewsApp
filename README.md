@@ -6,7 +6,7 @@ access the news sources and add the news you want to your favorites.
 This app uses **News API**. - https://newsapi.org/
 
 ### 3rd Party Libraries
-**Alamofire**, **SwiftlyJSON** and **SDWebImage/SDWebImageSwiftUI**
+**Alamofire**, **SwiftyJSON** and **SDWebImage/SDWebImageSwiftUI**
 
 ### Features
 
