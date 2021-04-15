@@ -1,6 +1,6 @@
-# AppcentNews
+# NewsApp
 
-AppcentNews is a news feed application that I developed for Appcent. From this application you can view the news according to the word you are searching, 
+NewsApp is a news feed application that I developed. From this application you can view the news according to the word you are searching, 
 access the news sources and add the news you want to your favorites.
 
 This app uses **News API**. - https://newsapi.org/
